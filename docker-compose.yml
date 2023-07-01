@@ -1,0 +1,16 @@
+version: '3.4'
+services:
+  rust:
+    build:
+      context: .
+      dockerfile: ./docker/rust/Dockerfile
+    volumes:
+      - .:/workspace:delegated
+      # For building dependencies always use a volume, you get waaaay better performance.
+      - target:/workspace/target
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+    working_dir: /workspace
+volumes:
+  # The volume for cargo build
+  target: 
