@@ -1,0 +1,3 @@
+mod core {
+    struct Tree {}
+}

@@ -1,0 +1,30 @@
+{
+    "workbench.colorCustomizations": {
+      "[Default Dark+]": {
+        "rust_analyzer.inlayHints.foreground": "#868686f0",
+        "rust_analyzer.inlayHints.background": "#3d3d3d48",
+        "rust_analyzer.inlayHints.foreground.typeHints": "#fdb6fdf0",
+        "rust_analyzer.inlayHints.background.chainingHints": "#6b0c0c81"
+      }
+    },
+    "editor.semanticTokenColorCustomizations": {
+      "rules": {
+        "*.mutable": {
+          "fontStyle": ""
+        },
+        "operator.unsafe": "#ff6600",
+        "function.unsafe": "#ff6600",
+        "method.unsafe": "#ff6600"
+      }
+    },
+    "rust-analyzer.checkOnSave.command": "fmt",
+    "files.autoSave": "afterDelay",
+    "editor.formatOnPaste": true,
+    "terminal.integrated.profiles.linux": {
+      "fish": {
+        "path": "/usr/bin/fish"
+      }
+    },
+    "terminal.integrated.defaultProfile.linux": "fish"
+  }
+  
