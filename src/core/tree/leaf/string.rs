@@ -8,6 +8,9 @@ mod leaf {
         fn to_json(&self) -> String {
             return format!("\"{}\"", self.value);
         }
+        fn to_yml(&self) -> String {
+            return self.value.clone();
+        }
     }
 }
 
@@ -18,10 +21,17 @@ mod tests {
     use crate::core::converter::core::Converter;
 
     #[test]
-    fn string_leaf_shold_return_with_double_quatation() {
+    fn string_leaf_to_json_shold_return_with_double_quatation() {
         let leaf = StringLeaf {
             value: String::from("sample value"),
         };
         assert_eq!(leaf.to_json(), "\"sample value\"")
+    }
+    #[test]
+    fn string_leaf_to_yml_shold_return_raw_string_format() {
+        let leaf = StringLeaf {
+            value: String::from("sample value"),
+        };
+        assert_eq!(leaf.to_yml(), "sample value")
     }
 }

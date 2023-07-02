@@ -4,6 +4,6 @@ pub mod core {
         ///
         ///
         fn to_json(&self) -> String;
-        
+        fn to_yml(&self) -> String;
     }
 }
