@@ -10,9 +10,10 @@ pub mod core {
 
     use super::leaf::tree::Leaf;
 
-    /// - 順序が必要な場合があるため、BTreeを用いています.
-    ///
-    pub enum Tree<LeafType> {
+    /// - 順序が必要な場合があるため、HashMapではなくBTreeを用いています.
+    /// - LeafTypeはDebugを実装している必要があります.
+    #[derive(Debug)]
+    pub enum Tree<LeafType: std::fmt::Debug> {
         ListBranch {
             children: Vec<Tree<LeafType>>,
         },
@@ -22,6 +23,24 @@ pub mod core {
         Leaf {
             value: LeafType,
         },
+    }
+
+    impl<LeafType : std::fmt::Debug> Tree<LeafType> {
+        pub fn append(&mut self, key: String, value: Tree<LeafType>) {
+            println!("{}", key);
+            match self {
+                Tree::ListBranch { children } => {
+                    children.push(value);
+                }
+                Tree::MapBranch { children } => {
+                    println!("MapBranch {}, {:?}", key, value);
+                    children.insert(key, value);
+                }
+                Tree::Leaf { value } => {
+                    panic!("Leafにはappendできません");
+                }
+            }
+        }
     }
 }
 
@@ -45,15 +64,15 @@ mod tests {
     }
 
     #[test]
-    fn tree_can_override() {
+    fn array_branch_can_append() {
         use super::core::Tree;
 
-        let tree = Tree::MapBranch {
+        let mut tree = Tree::MapBranch {
             children: BTreeMap::from([
                 ("key1".to_string(), Tree::Leaf { value: 1 }),
                 ("key2".to_string(), Tree::Leaf { value: 2 }),
             ]),
         };
-        
+        tree.append("sample".to_string(), Tree::Leaf { value: 1 });
     }
 }

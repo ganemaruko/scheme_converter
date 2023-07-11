@@ -1,2 +1,2 @@
-mod tree;
+pub mod tree;
 mod converter;
